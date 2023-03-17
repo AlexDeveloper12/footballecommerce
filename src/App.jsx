@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
-import { FormControlLabel, FormGroup, Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import './App.css';
 import FootballShirtCard from './components/FootballShirtCard';
-import { teams } from './utils/Utils';
-import FootballCheckBox from "./components/FootballCheckbox";
 import CartButton from './components/CartButton';
 import CartModal from './components/CartModal';
 
@@ -23,16 +21,20 @@ function App() {
   const [checkedState, setCheckedState] = useState(
     new Array(footballShirtData.length).fill(false),
   );
-  const [filteredFootballShirtData, setFileredFootballShirtData] = useState([]);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartData, setCartData] = useState([]);
 
-  useEffect(() => {
-    if (localStorage.length > 0) {
-      getTShirtsInCart();
+  const getTShirtsInCart = () => {
+    const tempArray = [];
+    for (let myIndex = 0; myIndex < localStorage.length; myIndex += 1) {
+      const key = localStorage.key(myIndex);
+      const item = JSON.parse(localStorage.getItem(key));
+      console.log(item);
+      tempArray.push(item);
     }
-  }, []);
+    setCartData(tempArray);
+  };
 
   const handleOnChange = (position) => {
     console.log(position);
@@ -40,11 +42,6 @@ function App() {
     const updatedCheckState = checkedState.map((item, index) => (index === position ? !item : item));
     setCheckedState(updatedCheckState);
   };
-
-  const updateTshirtQuantity = (tshirtID, quantity) => {
-    const tshirt = JSON.parse(localStorage.getItem(tshirtID));
-    tshirt["quantityChosen"] = quantity;
-  }
 
   useEffect(() => {
     axios.get('./footballtshirts.json')
@@ -54,7 +51,7 @@ function App() {
       .catch((error) => {
         console.log(`Error fetching football shirt data: ${error} `);
       });
-  }, [footballShirtData]);
+  }, []);
 
   const addShirtToCart = (item, quantity) => {
     const {
@@ -84,18 +81,11 @@ function App() {
     setIsCartOpen(!isCartOpen);
   };
 
-  const getTShirtsInCart = () => {
-    const tempArray = [];
-    for (let myIndex = 0; myIndex < localStorage.length; myIndex++) {
-      const key = localStorage.key(myIndex);
-      const item = localStorage.getItem(key);
-      tempArray.push(item);
-      console.log(key);
-      console.log(item);
+  useEffect(() => {
+    if (localStorage.length > 0) {
+      getTShirtsInCart();
     }
-
-    setCartData(tempArray);
-  };
+  }, []);
 
   return (
     <Grid container>
