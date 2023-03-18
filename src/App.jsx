@@ -22,6 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function App() {
   const [footballShirtData, setFootballShirtData] = useState([]);
+  const [filteredFootballShirtData, setFilteredFootballShirtData] = useState([]);
   const [checkedState, setCheckedState] = useState(
     new Array(footballShirtData.length).fill(false),
   );
@@ -49,6 +50,16 @@ function App() {
     setCheckedState(updatedCheckState);
   };
 
+  const handleTShirtFilter = (team) => {
+    const tempTShirtsArray = [...filteredFootballShirtData];
+
+    const filteredArray = tempTShirtsArray.filter((value) => value.team === team);
+
+    console.log(team);
+
+    setFilteredFootballShirtData(filteredArray);
+  };
+
   const removeFromCart = (tshirt) => {
     const tshirtKey = localStorage.key(tshirt);
 
@@ -60,6 +71,7 @@ function App() {
     axios.get('./footballtshirts.json')
       .then((response) => {
         setFootballShirtData(response.data);
+        setFilteredFootballShirtData(response.data);
       })
       .catch((error) => {
         console.log(`Error fetching football shirt data: ${error} `);
@@ -106,15 +118,16 @@ function App() {
   return (
     <Grid container>
       <Grid item>
-        <FormGroup 
-          sx={{position: 'flex', flexDirection: 'row', justifyContent:'center', alignItems: 'center'}}
-        
+        <FormGroup
+          sx={{
+            position: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+          }}
         >
           {
             teams.map((value, index) => (
               <FootballCheckBox
                 label={value}
-                handleOnChange={handleOnChange}
+                handleOnChange={handleTShirtFilter}
                 index={index}
                 checkedState={checkedState}
               />
@@ -124,57 +137,57 @@ function App() {
       </Grid>
 
       {
-    isAddedAlertOpen ? (
-      <AddToCartAlert />
-    )
-      : null
-  }
+        isAddedAlertOpen ? (
+          <AddToCartAlert />
+        )
+          : null
+      }
 
-  {
-    isValidationMessage ? (
-      <ValidationMessage headerText="Warning" text="Please enter a valid quantity" />
-    )
-      : null
-  }
+      {
+        isValidationMessage ? (
+          <ValidationMessage headerText="Warning" text="Please enter a valid quantity" />
+        )
+          : null
+      }
 
-  <Grid container spacing={2}>
-    <Grid item>
-      <CartButton
-        toggleModal={toggleCartModal}
-      />
-    </Grid>
-
-  </Grid>
-
-  {
-    footballShirtData !== null ? footballShirtData.map((value) => (
-      <Grid item xs={4}>
-        <Item style={{ marginTop: '20px' }}>
-          <FootballShirtCard
-            shirt={value}
-            key={value.id}
-            addShirt={addShirtToCart}
+      <Grid container spacing={2}>
+        <Grid item>
+          <CartButton
+            toggleModal={toggleCartModal}
           />
-        </Item>
+        </Grid>
+
       </Grid>
-    ))
 
-      : null
-  }
+      {
+        filteredFootballShirtData !== null ? filteredFootballShirtData.map((value) => (
+          <Grid item xs={4}>
+            <Item style={{ marginTop: '20px' }}>
+              <FootballShirtCard
+                shirt={value}
+                key={value.id}
+                addShirt={addShirtToCart}
+              />
+            </Item>
+          </Grid>
+        ))
 
-  {
-    isCartOpen
-      ? (
-        <CartModal
-          isOpen={isCartOpen}
-          toggleModal={toggleCartModal}
-          cartData={cartData}
-          removeItem={removeFromCart}
-        />
-      )
+          : null
+      }
 
-      : null
-  }
+      {
+        isCartOpen
+          ? (
+            <CartModal
+              isOpen={isCartOpen}
+              toggleModal={toggleCartModal}
+              cartData={cartData}
+              removeItem={removeFromCart}
+            />
+          )
+
+          : null
+      }
 
     </Grid >
   );

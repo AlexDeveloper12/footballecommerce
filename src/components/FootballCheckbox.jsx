@@ -7,7 +7,7 @@ function FootballCheckbox({
   return (
       <FormControlLabel
             control={<Checkbox
-                onChange={() => handleOnChange(index)}
+                onChange={() => handleOnChange(label)}
                 value={label}
                 checked={checkedState[index]}
             />}

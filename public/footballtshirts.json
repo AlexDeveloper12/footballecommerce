@@ -1,6 +1,6 @@
 [{
     "id":"1",
-    "team":"arsenal",
+    "team":"Arsenal",
     "description":"Arsenal Home Kit",
     "imageURLFrontCover":"https://www.sportsdirect.com/images/products/37733508_l.jpg",
     "imageURLBackCover":"https://www.sportsdirect.com/images/products/37733508_l_a1.jpg",
@@ -10,7 +10,7 @@
 },
 {
     "id":"2",
-    "team":"arsenal",
+    "team":"Arsenal",
     "description":"Arsenal Away Kit",
     "imageURLFrontCover":"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/96cd6e3c3db54778b6c0ae240103bc8a_9366/Arsenal_22-23_Away_Jersey_Black_HA5328_01_laydown.jpg",
     "imageURLBackCover":"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f91d7408152142f380e2ae240103c4f6_9366/Arsenal_22-23_Away_Jersey_Black_HA5328_02_laydown_hover.jpg",
