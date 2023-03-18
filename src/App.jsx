@@ -7,6 +7,7 @@ import './App.css';
 import FootballShirtCard from './components/FootballShirtCard';
 import CartButton from './components/CartButton';
 import CartModal from './components/CartModal';
+import AddToCartAlert from './components/Alerts/AddToCartAlert';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -24,6 +25,7 @@ function App() {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartData, setCartData] = useState([]);
+  const [isAddedAlertOpen,setIsAddedAlertOpen] = useState(false);
 
   const getTShirtsInCart = () => {
     const tempArray = [];
@@ -55,7 +57,7 @@ function App() {
 
   const addShirtToCart = (item, quantity) => {
     const {
-      id, name, description, imageURLFrontCover, imageURLBackCover, price,
+      id, team, description, imageURLFrontCover, imageURLBackCover, price,
       numberAvailable,
     } = item;
 
@@ -64,7 +66,7 @@ function App() {
 
       const shirtToAdd = JSON.stringify({
         id,
-        name,
+        team,
         description,
         imageURLFrontCover,
         imageURLBackCover,
@@ -74,6 +76,7 @@ function App() {
       });
 
       localStorage.setItem(`shirtcartitem-${id}`, shirtToAdd);
+      setIsAddedAlertOpen(true);
     }
   };
 
@@ -105,6 +108,13 @@ function App() {
       </FormGroup>
       </div> */}
 
+      {
+        isAddedAlertOpen ? (
+          <AddToCartAlert />
+        )
+          : null
+      }
+
       <Grid item xs={6}>
         <CartButton
           toggleModal={toggleCartModal}
@@ -113,8 +123,8 @@ function App() {
 
       {
         footballShirtData !== null ? footballShirtData.map((value) => (
-          <Grid item xs={6}>
-            <Item>
+          <Grid item xs={4}>
+            <Item style={{marginTop:'20px'}} >
               <FootballShirtCard
                 shirt={value}
                 key={value.id}

@@ -25,7 +25,7 @@ function FootballShirtCard({ shirt, addShirt }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 400 }} style={{ marginBottom: '30px', marginRight: '10px' }}>
+    <Card style={{ marginBottom: '30px'}}>
       <CardMedia
         component="img"
         sx={{ height: 370 }}
@@ -38,12 +38,12 @@ function FootballShirtCard({ shirt, addShirt }) {
           {description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {price}
+          £{price}
         </Typography>
         <TextField type="number" onBlur={(event) => handleMaxQuantity(event)} />
         <Typography variant="body2" color="text.secondary">
           Number of shirts available:
-          {numberAvailable}
+           {numberAvailable}
         </Typography>
 
         {
