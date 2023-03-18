@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
-import { Grid, FormGroup } from '@mui/material';
+import { Grid, FormGroup, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import axios from 'axios';
 import './App.css';
 import FootballShirtCard from './components/FootballShirtCard';
@@ -37,7 +38,6 @@ function App() {
     for (let myIndex = 0; myIndex < localStorage.length; myIndex += 1) {
       const key = localStorage.key(myIndex);
       const item = JSON.parse(localStorage.getItem(key));
-      console.log(item);
       tempArray.push(item);
     }
     setCartData(tempArray);
@@ -118,6 +118,28 @@ function App() {
 
   return (
     <Grid container>
+
+      <Grid container justifyContent="flex-start">
+        <Grid item>
+          <Typography variant="h6">
+             <span style={{color:'black'}}>Football T-Shirts</span> 
+          </Typography>
+        </Grid>
+        <Grid item style={{marginLeft:'20px'}}>
+          <SportsSoccerIcon fontSize="large" color="primary" />
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={2} justifyContent="flex-end">
+        <Grid item>
+          <CartButton
+            toggleModal={toggleCartModal}
+          />
+        </Grid>
+
+      </Grid>
+{/* 
+
       <Grid item>
         <FormGroup
           sx={{
@@ -135,7 +157,7 @@ function App() {
             ))
           }
         </FormGroup>
-      </Grid>
+      </Grid> */}
 
       {
         isAddedAlertOpen ? (
@@ -151,19 +173,10 @@ function App() {
           : null
       }
 
-      <Grid container spacing={2}>
-        <Grid item>
-          <CartButton
-            toggleModal={toggleCartModal}
-          />
-        </Grid>
-
-      </Grid>
-
       {
         filteredFootballShirtData !== null ? filteredFootballShirtData.map((value) => (
           <Grid item xs={4}>
-            <Item style={{ marginTop: '20px' }}>
+            <Item style={{ marginTop: '20px', marginRight:'30px' }}>
               <FootballShirtCard
                 shirt={value}
                 key={value.id}
