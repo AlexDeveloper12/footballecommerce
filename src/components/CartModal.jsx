@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactModal from 'react-modal';
 import '../styles/CartModal.css';
 import Table from '@mui/material/Table';
@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const customStyles = {
     content: {
@@ -24,15 +25,30 @@ const customStyles = {
 
 ReactModal.setAppElement('#root');
 
-function CartModal({ isOpen, toggleModal, cartData }) {
+function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
+
+    const [customQuantity, setCustomQuanity] = useState(cartData.quantityChosen);
+
     const calculateTotal = () => {
         const tempCartData = [...cartData];
 
-    const reduceCartData = parseFloat(tempCartData.reduce((total, item) =>
-      total + (parseFloat(item.price) * parseFloat(item.quantityChosen)), 0)).toFixed(2);
+    // eslint-disable-next-line max-len
+    const reduceCartData = parseFloat(tempCartData.reduce((total, item) => total + (parseFloat(item.price) * parseFloat(item.quantityChosen)), 0)).toFixed(2);
 
     return `£${reduceCartData}`;
     };
+
+    const handleQuantityChange = (tshirt) =>{
+        //get local storage item from the items id and then update the quantity chosen from there
+        var tempCartData = [...cartData]
+        const tShirtKey = localStorage.key(tshirt);
+        const tShirtItem = localStorage.getItem(tShirtKey);
+        console.log(`key: ${tShirtKey} - Item: ${tShirtItem}`);
+
+        //update cart data and local storage
+    }
+
+
 
     if (cartData) {
         return (
@@ -50,12 +66,12 @@ function CartModal({ isOpen, toggleModal, cartData }) {
                                 <TableCell align="center">Description</TableCell>
                                 <TableCell align="center">Quantity</TableCell>
                                 <TableCell align="center">Price</TableCell>
+                                <TableCell align="center">Remove</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {
                                 cartData.map((value) => (
-
                                     <TableRow
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
@@ -64,8 +80,9 @@ function CartModal({ isOpen, toggleModal, cartData }) {
                                         </TableCell>
                                         <TableCell component="th" scope="row" >{value.team}</TableCell>
                                         <TableCell component="th" scope="row">{value.description}</TableCell>
-                                        <TableCell component="th" scope="row">{value.quantityChosen}</TableCell>
+                                        <TableCell component="th" scope="row"> <button onClick={()=>handleQuantityChange(value)} >-</button> {value.quantityChosen}<button onClick={()=>handleQuantityChange(value)}>+</button></TableCell>
                                         <TableCell component="th" scope="row">£{value.price}</TableCell>
+                                        <TableCell component="th" scope="row" ><DeleteIcon onClick={()=>removeItem(value)} /></TableCell>
                                     </TableRow>
                                 ))
                             }

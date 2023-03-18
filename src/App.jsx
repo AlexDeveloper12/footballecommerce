@@ -47,6 +47,13 @@ function App() {
     setCheckedState(updatedCheckState);
   };
 
+  const removeFromCart = (tshirt) => {
+    const tshirtKey = localStorage.key(tshirt);
+
+    localStorage.removeItem(tshirtKey);
+    getTShirtsInCart();
+  };
+
   useEffect(() => {
     axios.get('./footballtshirts.json')
       .then((response) => {
@@ -63,10 +70,9 @@ function App() {
       numberAvailable,
     } = item;
 
-    if(quantity === 0) {
+    if (quantity === 0) {
       setValidationMessage(true);
-    }
-    else if (numberAvailable > quantity) {
+    } else if (numberAvailable > quantity) {
       const newNumAvailable = numberAvailable - quantity;
 
       const shirtToAdd = JSON.stringify({
@@ -156,6 +162,7 @@ function App() {
               isOpen={isCartOpen}
               toggleModal={toggleCartModal}
               cartData={cartData}
+              removeItem={removeFromCart}
             />
           )
 
