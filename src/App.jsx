@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
-import { Grid } from '@mui/material';
+import { Grid, FormGroup } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import './App.css';
@@ -9,6 +9,8 @@ import CartButton from './components/CartButton';
 import CartModal from './components/CartModal';
 import AddToCartAlert from './components/Alerts/AddToCartAlert';
 import ValidationMessage from './components/Alerts/ValidationMessage';
+import { teams } from './utils/Utils';
+import FootballCheckBox from './components/FootballCheckbox';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -103,73 +105,78 @@ function App() {
 
   return (
     <Grid container>
-      {/* 
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <FormGroup>
-        {
-        teams.map((value, index) => (
-          <FootballCheckBox
-            label={value}
-            handleOnChange={handleOnChange}
-            index={index}
-            checkedState={checkedState}
-          />
-        ))
-      }
-      </FormGroup>
-      </div> */}
-
-      {
-        isAddedAlertOpen ? (
-          <AddToCartAlert />
-        )
-          : null
-      }
-
-      {
-       isValidationMessage ? (
-        <ValidationMessage headerText="Warning" text="Please enter a valid quantity" />
-       )
-         : null
-      }
-
-      <Grid item xs={6}>
-        <CartButton
-          toggleModal={toggleCartModal}
-        />
+      <Grid item>
+        <FormGroup 
+          sx={{position: 'flex', flexDirection: 'row', justifyContent:'center', alignItems: 'center'}}
+        
+        >
+          {
+            teams.map((value, index) => (
+              <FootballCheckBox
+                label={value}
+                handleOnChange={handleOnChange}
+                index={index}
+                checkedState={checkedState}
+              />
+            ))
+          }
+        </FormGroup>
       </Grid>
 
       {
-        footballShirtData !== null ? footballShirtData.map((value) => (
-          <Grid item xs={4}>
-            <Item style={{marginTop:'20px'}} >
-              <FootballShirtCard
-                shirt={value}
-                key={value.id}
-                addShirt={addShirtToCart}
-              />
-            </Item>
-          </Grid>
-        ))
+    isAddedAlertOpen ? (
+      <AddToCartAlert />
+    )
+      : null
+  }
 
-          : null
-      }
+  {
+    isValidationMessage ? (
+      <ValidationMessage headerText="Warning" text="Please enter a valid quantity" />
+    )
+      : null
+  }
 
-      {
-        isCartOpen
-          ? (
-            <CartModal
-              isOpen={isCartOpen}
-              toggleModal={toggleCartModal}
-              cartData={cartData}
-              removeItem={removeFromCart}
-            />
-          )
-
-          : null
-      }
-
+  <Grid container spacing={2}>
+    <Grid item>
+      <CartButton
+        toggleModal={toggleCartModal}
+      />
     </Grid>
+
+  </Grid>
+
+  {
+    footballShirtData !== null ? footballShirtData.map((value) => (
+      <Grid item xs={4}>
+        <Item style={{ marginTop: '20px' }}>
+          <FootballShirtCard
+            shirt={value}
+            key={value.id}
+            addShirt={addShirtToCart}
+          />
+        </Item>
+      </Grid>
+    ))
+
+      : null
+  }
+
+  {
+    isCartOpen
+      ? (
+        <CartModal
+          isOpen={isCartOpen}
+          toggleModal={toggleCartModal}
+          cartData={cartData}
+          removeItem={removeFromCart}
+        />
+      )
+
+      : null
+  }
+
+    </Grid >
   );
 }
 

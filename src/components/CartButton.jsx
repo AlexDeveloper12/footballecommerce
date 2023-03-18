@@ -6,7 +6,7 @@ function CartButton({ toggleModal }) {
   return (
     // 
     <>
-      <ShoppingCartIcon color="primary" onClick={toggleModal} />
+      <ShoppingCartIcon color="primary" onClick={toggleModal} fontSize="large" />
     </>
   );
 }

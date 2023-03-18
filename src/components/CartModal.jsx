@@ -61,7 +61,7 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Image</TableCell>
+                                <TableCell align="center">T-shirt (front)</TableCell>
                                 <TableCell align="center">Team</TableCell>
                                 <TableCell align="center">Description</TableCell>
                                 <TableCell align="center">Quantity</TableCell>
@@ -82,7 +82,7 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                                         <TableCell component="th" scope="row">{value.description}</TableCell>
                                         <TableCell component="th" scope="row"> <button onClick={()=>handleQuantityChange(value)} >-</button> {value.quantityChosen}<button onClick={()=>handleQuantityChange(value)}>+</button></TableCell>
                                         <TableCell component="th" scope="row">£{value.price}</TableCell>
-                                        <TableCell component="th" scope="row" ><DeleteIcon onClick={()=>removeItem(value)} /></TableCell>
+                                        <TableCell component="th" scope="row" align="right" ><DeleteIcon onClick={()=>removeItem(value)} /></TableCell>
                                     </TableRow>
                                 ))
                             }
