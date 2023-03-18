@@ -8,6 +8,7 @@ import FootballShirtCard from './components/FootballShirtCard';
 import CartButton from './components/CartButton';
 import CartModal from './components/CartModal';
 import AddToCartAlert from './components/Alerts/AddToCartAlert';
+import ValidationMessage from './components/Alerts/ValidationMessage';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -25,7 +26,8 @@ function App() {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartData, setCartData] = useState([]);
-  const [isAddedAlertOpen,setIsAddedAlertOpen] = useState(false);
+  const [isAddedAlertOpen, setIsAddedAlertOpen] = useState(false);
+  const [isValidationMessage, setValidationMessage] = useState(false);
 
   const getTShirtsInCart = () => {
     const tempArray = [];
@@ -61,7 +63,10 @@ function App() {
       numberAvailable,
     } = item;
 
-    if (numberAvailable > quantity) {
+    if(quantity === 0) {
+      setValidationMessage(true);
+    }
+    else if (numberAvailable > quantity) {
       const newNumAvailable = numberAvailable - quantity;
 
       const shirtToAdd = JSON.stringify({
@@ -113,6 +118,13 @@ function App() {
           <AddToCartAlert />
         )
           : null
+      }
+
+      {
+       isValidationMessage ? (
+        <ValidationMessage headerText="Warning" text="Please enter a valid quantity" />
+       )
+         : null
       }
 
       <Grid item xs={6}>

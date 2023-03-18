@@ -11,15 +11,15 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    height: '90%',
-  },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        height: '90%',
+    },
 };
 
 ReactModal.setAppElement('#root');
@@ -28,12 +28,11 @@ function CartModal({ isOpen, toggleModal, cartData }) {
     const calculateTotal = () => {
         const tempCartData = [...cartData];
 
-        const reduceCartData = tempCartData.reduce((total,item)=> total +(parseFloat(item.price)* parseFloat(item.quantityChosen)),0);
+    const reduceCartData = parseFloat(tempCartData.reduce((total, item) =>
+      total + (parseFloat(item.price) * parseFloat(item.quantityChosen)), 0)).toFixed(2);
 
-        const parsedTotal = parseFloat(reduceCartData).toFixed(2);
-
-        return parsedTotal;
-  }
+    return `£${reduceCartData}`;
+    };
 
     if (cartData) {
         return (
@@ -46,11 +45,11 @@ function CartModal({ isOpen, toggleModal, cartData }) {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                              <TableCell>Image</TableCell>
-                              <TableCell align="center">Team</TableCell>
-                              <TableCell align="center">Description</TableCell>
-                              <TableCell align="center">Quantity</TableCell>
-                              <TableCell align="center">Price</TableCell>
+                                <TableCell>Image</TableCell>
+                                <TableCell align="center">Team</TableCell>
+                                <TableCell align="center">Description</TableCell>
+                                <TableCell align="center">Quantity</TableCell>
+                                <TableCell align="center">Price</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -72,19 +71,19 @@ function CartModal({ isOpen, toggleModal, cartData }) {
                             }
 
                             <TableRow>
-                                <TableCell>Total: £{calculateTotal()}</TableCell>
+                                <TableCell>Total: {calculateTotal()}</TableCell>
                             </TableRow>
 
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <div style={{ textAlign: 'center', marginTop:100 }}>
+                <div style={{ textAlign: 'center', marginTop: 100 }}>
                     <Button variant="contained" onClick={toggleModal}>Close</Button>
                 </div>
 
             </ReactModal>
-        );
-    }
+    );
+  }
 }
 
 export default CartModal;
