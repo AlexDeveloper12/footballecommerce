@@ -28,9 +28,11 @@ function CartModal({ isOpen, toggleModal, cartData }) {
     const calculateTotal = () => {
         const tempCartData = [...cartData];
 
-        const reduceCartData = tempCartData.reduce((total,item)=> total +(parseFloat(item.price).toFixed(2)* parseFloat(item.quantityChosen).toFixed(2)),0);
+        const reduceCartData = tempCartData.reduce((total,item)=> total +(parseFloat(item.price)* parseFloat(item.quantityChosen)),0);
 
-        return reduceCartData;
+        const parsedTotal = parseFloat(reduceCartData).toFixed(2);
+
+        return parsedTotal;
   }
 
     if (cartData) {
@@ -44,7 +46,7 @@ function CartModal({ isOpen, toggleModal, cartData }) {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                              <TableCell align="center">Image</TableCell>
+                              <TableCell>Image</TableCell>
                               <TableCell align="center">Team</TableCell>
                               <TableCell align="center">Description</TableCell>
                               <TableCell align="center">Quantity</TableCell>
