@@ -50,10 +50,11 @@ function App() {
     setCheckedState(updatedCheckState);
   };
 
-  const handleTShirtFilter = (team) => {
-    const tempTShirtsArray = [...filteredFootballShirtData];
+  const handleTShirtFilter = (event) => {
+    const tempTShirtsArray = [...footballShirtData];
+    console.log(event);
 
-    const filteredArray = tempTShirtsArray.filter((value) => value.team === team);
+    const filteredArray = tempTShirtsArray.filter((value) => value.team === event.target.value);
 
     console.log(team);
 
