@@ -120,6 +120,17 @@ function App() {
     setIsCartOpen(!isCartOpen);
   };
 
+  const toggleAlert = (alertType) =>{
+    switch(alertType){
+      case "addcart":
+        setIsAddedAlertOpen(!isAddedAlertOpen);
+        break;
+      case "validation":
+        setValidationMessage(!isValidationMessage);
+        break;
+    }
+  }
+
   useEffect(() => {
     if (localStorage.length > 0) {
       getTShirtsInCart();
@@ -139,14 +150,18 @@ function App() {
 
       {
         isAddedAlertOpen ? (
-          <AddToCartAlert />
+          <AddToCartAlert toggleAlert={toggleAlert} />
         )
           : null
       }
 
       {
         isValidationMessage ? (
-          <ValidationMessage headerText={validationText.headerText} text={validationText.valueText} />
+          <ValidationMessage
+            headerText={validationText.headerText}
+            text={validationText.valueText}
+            toggleAlert={toggleAlert}
+          />
         )
           : null
       }

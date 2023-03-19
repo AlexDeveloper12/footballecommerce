@@ -30,7 +30,6 @@ function FootballShirtCard({ shirt, addShirt }) {
     if (value === '') {
       setNumAvailability(numberAvailable);
     }
-
   };
 
   const changeToBackCover = () => {
@@ -53,18 +52,19 @@ function FootballShirtCard({ shirt, addShirt }) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" />
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" style={{marginTop:'10px'}}>
           {description}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          £{price}
+        <Typography variant="body2" color="text.secondary" style={{marginTop:'10px', marginBottom:'10px'}}>
+          £
+          {price}
         </Typography>
         <TextField
           type="number"
           onBlur={(event) => handleMaxQuantityOnBlur(event)}
           onChange={(event) => handleMaxQuantityOnBlur(event)}
         />
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" style={{marginTop:'10px'}} >
           Number of shirts available:
           <span style={{ marginLeft: '10px' }}>{numAvailability}</span>
         </Typography>
