@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
-import { Grid, FormGroup, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+
 import axios from 'axios';
 import './App.css';
 import FootballShirtCard from './components/FootballShirtCard';
@@ -10,8 +10,9 @@ import CartButton from './components/CartButton';
 import CartModal from './components/CartModal';
 import AddToCartAlert from './components/Alerts/AddToCartAlert';
 import ValidationMessage from './components/Alerts/ValidationMessage';
-import { teams } from './utils/Utils';
-import FootballCheckBox from './components/FootballCheckbox';
+import SearchTeam from './components/SearchTeam';
+import HeaderContainer from './components/Containers/HeaderContainer';
+import SearchContainer from './components/Containers/SearchContainer';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -32,6 +33,7 @@ function App() {
   const [cartData, setCartData] = useState([]);
   const [isAddedAlertOpen, setIsAddedAlertOpen] = useState(false);
   const [isValidationMessage, setValidationMessage] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
 
   const getTShirtsInCart = () => {
     const tempArray = [];
@@ -43,22 +45,20 @@ function App() {
     setCartData(tempArray);
   };
 
-  const handleOnChange = (position) => {
-    console.log(position);
-    // eslint-disable-next-line max-len
-    const updatedCheckState = checkedState.map((item, index) => (index === position ? !item : item));
-    setCheckedState(updatedCheckState);
-  };
+  const handleSearchChange = (event) => {
+    const value = event.target.value.toLowerCase();
 
-  const handleTShirtFilter = (event) => {
-    const tempTShirtsArray = [...footballShirtData];
-    console.log(event);
+    setSearchValue(value);
 
-    const filteredArray = tempTShirtsArray.filter((value) => value.team === event.target.value);
+    // console.log(value);
 
-    console.log(team);
+    // let result = [];
 
-    setFilteredFootballShirtData(filteredArray);
+    // result = footballShirtData.filter((data) => {
+    //   return data.team.search(value) != 1
+    // });
+
+    // setFilteredFootballShirtData(result);
   };
 
   const removeFromCart = (tshirt) => {
@@ -119,46 +119,6 @@ function App() {
   return (
     <Grid container>
 
-      <Grid container justifyContent="flex-start">
-        <Grid item>
-          <Typography variant="h6">
-             <span style={{color:'black'}}>Football T-Shirts</span> 
-          </Typography>
-        </Grid>
-        <Grid item style={{marginLeft:'20px'}}>
-          <SportsSoccerIcon fontSize="large" color="primary" />
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={2} justifyContent="flex-end">
-        <Grid item>
-          <CartButton
-            toggleModal={toggleCartModal}
-          />
-        </Grid>
-
-      </Grid>
-{/* 
-
-      <Grid item>
-        <FormGroup
-          sx={{
-            position: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
-          }}
-        >
-          {
-            teams.map((value, index) => (
-              <FootballCheckBox
-                label={value}
-                handleOnChange={handleTShirtFilter}
-                index={index}
-                checkedState={checkedState}
-              />
-            ))
-          }
-        </FormGroup>
-      </Grid> */}
-
       {
         isAddedAlertOpen ? (
           <AddToCartAlert />
@@ -173,10 +133,19 @@ function App() {
           : null
       }
 
+      <HeaderContainer toggleCartModal={toggleCartModal} />
+
+      <SearchContainer>
+        <SearchTeam
+          text={searchValue}
+          onTextChange={handleSearchChange}
+        />
+      </SearchContainer>
+
       {
         filteredFootballShirtData !== null ? filteredFootballShirtData.map((value) => (
-          <Grid item xs={4}>
-            <Item style={{ marginTop: '20px', marginRight:'30px' }}>
+          <Grid item xs={4} key={value.id}>
+            <Item style={{ marginTop: '20px', marginRight: '30px' }}>
               <FootballShirtCard
                 shirt={value}
                 key={value.id}
@@ -203,7 +172,7 @@ function App() {
           : null
       }
 
-    </Grid >
+    </Grid>
   );
 }
 

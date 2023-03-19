@@ -161,7 +161,7 @@
 },
 
 {
-    "id":"17",
+    "id":"18",
     "team":"Leeds United FC",
     "description":"Leeds United FC Home Kit",
     "imageURLFrontCover":"https://shop.leedsunited.com/media/catalog/product/h/o/home_shirt-1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=520&width=520&canvas=520:520",
@@ -170,7 +170,7 @@
     "numberAvailable":"22"
 } ,
 {
-    "id":"18",
+    "id":"19",
     "team":"Leeds United FC",
     "description":"Leeds United FC Home Kit",
     "imageURLFrontCover":"https://shop.leedsunited.com/media/amasty/amlabel/over_60_off_product_overlay.png",
@@ -180,7 +180,7 @@
 } ,
 {
 
-    "id":"19",
+    "id":"20",
     "team":"Liverpool FC",
     "description":"Liverpool FC Home Kit",
     "imageURLFrontCover":"https://store.liverpoolfc.com/media/catalog/product/cache/dd504f005c0b90ffe1b9fb2344db1a87/w/e/web_size_dm1843r-3_copy.jpg",
@@ -190,7 +190,7 @@
 },
 {
 
-    "id":"20",
+    "id":"21",
     "team":"Liverpool FC",
     "description":"Liverpool FC Home Kit",
     "imageURLFrontCover":"https://store.liverpoolfc.com/media/catalog/product/cache/dd504f005c0b90ffe1b9fb2344db1a87/w/e/web_size_dm1843r-3_copy.jpg",
@@ -198,7 +198,7 @@
     "price":"30.00",
     "numberAvailable":"21"
 },{
-    "id":"21",
+    "id":"22",
     "team":"Manchester City",
     "description":"Manchester City Home Kit",
     "imageURLFrontCover":"https://www.sportsdirect.com/images/products/37705318_l.jpg",
@@ -206,7 +206,7 @@
     "price":"30.00",
     "numberAvailable":"24"
 },{
-    "id":"22",
+    "id":"23",
     "team":"Manchester City",
     "description":"Manchester City Away Kit",
     "imageURLFrontCover":"https://shop.mancity.com/dw/image/v2/BDWJ_PRD/on/demandware.static/-/Sites-master-catalog-MAN/default/dwb0efa324/images/large/701221522001_pp_01_mcfc.png?sw=1600&sh=1600&sm=fit",
@@ -214,7 +214,7 @@
     "price":"30.00",
     "numberAvailable":"17"
 },{
-    "id":"23",
+    "id":"24",
     "team":"Manchester United",
     "description":"Manchester United Home Kit",
     "imageURLFrontCover":"https://images.footballfanatics.com/manchester-united/manchester-united-home-authentic-shirt-2022-23_ss4_p-13307701+pv-1+u-skyjtpdsdifd85q7gn1a+v-5e80e8963a18471cb377ceff48e37e5b.jpg?_hv=2&w=900",
@@ -223,7 +223,7 @@
     "numberAvailable":"19"
 },
 {
-    "id":"24",
+    "id":"25",
     "team":"Manchester United",
     "description":"Manchester United Away Kit",
     "imageURLFrontCover":"https://images.footballfanatics.com/manchester-united/manchester-united-home-authentic-shirt-2022-23_ss4_p-13307701+pv-1+u-skyjtpdsdifd85q7gn1a+v-5e80e8963a18471cb377ceff48e37e5b.jpg?_hv=2&w=900",
@@ -231,7 +231,7 @@
     "price":"30.00",
     "numberAvailable":"6"
 },{
-    "id": "25",
+    "id": "26",
     "team":"Newcastle United",
     "description":"Newcastle United Home Kit",
     "imageURLFrontCover":"https://cdn.shopify.com/s/files/1/0535/5107/1386/products/TM1214_BLACKWHITE_011_1_2000x.jpg?v=1657796711",
@@ -239,7 +239,7 @@
     "price":"30.00",
     "numberAvailable":"8"
 },{
-    "id": "26",
+    "id": "27",
     "team":"Newcastle United",
     "description":"Newcastle United Home Kit",
     "imageURLFrontCover":"https://cdn.shopify.com/s/files/1/0535/5107/1386/products/TM1218_NAVY_001_2000x.jpg?v=1658926154",
@@ -247,7 +247,7 @@
     "price":"30.00",
     "numberAvailable":"11"
 },{
-    "id": "27",
+    "id": "28",
     "team":"Nottingham Forest",
     "description":"Nottingham Forest Home Kit",
     "imageURLFrontCover":"https://cdn.shopify.com/s/files/1/0113/6839/8948/products/nffc-adult-home-shirt-22-23-nottingham-forest-fc-643023_700x.jpg?v=1678793895",
@@ -255,7 +255,7 @@
     "price":"30.00",
     "numberAvailable":"5"
 },{
-    "id": "28",
+    "id": "29",
     "team":"Nottingham Forest",
     "description":"Nottingham Forest Away Kit",
     "imageURLFrontCover":"https://cdn.shopify.com/s/files/1/0113/6839/8948/products/nffc-adult-away-shirt-22-23-nottingham-forest-fc-896087_3000x.jpg?v=1678793876",
@@ -264,7 +264,7 @@
     "numberAvailable":"14"
 },
 {
-    "id": "29",
+    "id": "30",
     "team":"Southampton",
     "description":"Southampton Home Kit",
     "imageURLFrontCover":"https://store.southamptonfc.com/siteimg/prodhires/1806-807.jpg",
@@ -273,7 +273,7 @@
     "numberAvailable":"18"
 },
 {
-    "id": "30",
+    "id": "31",
     "team":"Southampton",
     "description":"Southampton Away Kit",
     "imageURLFrontCover":"https://store.southamptonfc.com/siteimg/prodhires/1811-831.jpg",
@@ -282,7 +282,7 @@
     "numberAvailable":"23"
 },
 {
-    "id": "31",
+    "id": "32",
     "team":"Tottenham",
     "description":"Tottenham Home Kit",
     "imageURLFrontCover":"https://www.sportsdirect.com/images/products/37745201_l.jpg",
@@ -291,7 +291,7 @@
     "numberAvailable":"10"
 },
 {
-    "id": "32",
+    "id": "33",
     "team":"Tottenham",
     "description":"Tottenham Away Kit",
     "imageURLFrontCover":"https://www.sportsdirect.com/images/products/37759518_l.jpg",
@@ -300,7 +300,7 @@
     "numberAvailable":"22"
 },
 {
-    "id": "33",
+    "id": "34",
     "team":"West Ham United",
     "description":"West Ham United Home Kit",
     "imageURLFrontCover":"https://www.officialwesthamstore.com/siteimg/prodhires/9196-874.jpg",
@@ -309,7 +309,7 @@
     "numberAvailable":"23"
 },
 {
-    "id": "34",
+    "id": "35",
     "team":"West Ham United",
     "description":"West Ham United Away Kit",
     "imageURLFrontCover":"https://www.officialwesthamstore.com/siteimg/prodhires/9263-872.jpg",
@@ -318,7 +318,7 @@
     "numberAvailable":"16"
 },
 {
-    "id": "35",
+    "id": "36",
     "team":"Wolverhampton Wanderers",
     "description":"Wolverhampton Wanderers Home Kit",
     "imageURLFrontCover":"https://shop.wolves.co.uk/siteimg/listings/3450.jpg",
@@ -327,7 +327,7 @@
     "numberAvailable":"8"
 },
 {
-    "id": "36",
+    "id": "37",
     "team":"Wolverhampton Wanderers",
     "description":"Wolverhampton Wanderers Away Kit",
     "imageURLFrontCover":"https://shop.wolves.co.uk/siteimg/listings/3450.jpg",
