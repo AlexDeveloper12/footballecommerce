@@ -7,7 +7,7 @@ function AddToCartButton({ shirt, addShirt }) {
   return (
     <Button variant="contained" fullWidth onClick={() => addShirt(shirt)}>
       Add to Cart
-      <AddShoppingCartIcon />
+      <AddShoppingCartIcon style={{marginLeft:'20px'}} />
     </Button>
   );
 }

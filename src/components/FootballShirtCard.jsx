@@ -8,10 +8,12 @@ import TextField from '@mui/material/TextField';
 import AddToCartButton from './AddToCartButton';
 
 function FootballShirtCard({ shirt, addShirt }) {
-  const { team, description, price, imageURLFrontCover, numberAvailable } = shirt;
+  const { team, description, price, imageURLFrontCover, imageURLBackCover, numberAvailable } = shirt;
 
   const [isValidationMessage, setIsValidationMessage] = useState(false);
   const [quantityChosen, setQuantityChosen] = useState(0);
+  const [cardImage,setCardImage] = useState(imageURLFrontCover);
+  
 
   const handleMaxQuantity = (event) => {
     const { value } = event.target;
@@ -24,12 +26,22 @@ function FootballShirtCard({ shirt, addShirt }) {
     }
   };
 
+  const changeToBackCover = () =>{
+    setCardImage(imageURLBackCover);
+  }
+
+  const changeToFrontCover = () =>{
+    setCardImage(imageURLFrontCover);
+  }
+
   return (
     <Card style={{ marginBottom: '30px'}}>
       <CardMedia
         component="img"
         sx={{ height: 370 }}
-        image={imageURLFrontCover}
+        onMouseEnter={changeToBackCover}
+        onMouseLeave={changeToFrontCover}
+        image={cardImage}
         title={team}
       />
       <CardContent>
@@ -43,7 +55,7 @@ function FootballShirtCard({ shirt, addShirt }) {
         <TextField type="number" onBlur={(event) => handleMaxQuantity(event)} />
         <Typography variant="body2" color="text.secondary">
           Number of shirts available:
-           {numberAvailable}
+           <span style={{marginLeft:'10px'}}>{numberAvailable}</span> 
         </Typography>
 
         {
