@@ -3,7 +3,11 @@ import { TextField } from '@mui/material';
 
 function SearchTeam({text, onTextChange}) {
     return(
-        <TextField value={text} onChange={(e)=>onTextChange(e)} placeholder="Search for team" />
+        <TextField 
+            value={text} 
+            onChange={(e)=>onTextChange(e)} 
+            placeholder="Search for team" 
+        />
     )
 }
 

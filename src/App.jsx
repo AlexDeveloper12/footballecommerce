@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
 import axios from 'axios';
 import './App.css';
 import FootballShirtCard from './components/FootballShirtCard';
-import CartButton from './components/CartButton';
 import CartModal from './components/CartModal';
 import AddToCartAlert from './components/Alerts/AddToCartAlert';
 import ValidationMessage from './components/Alerts/ValidationMessage';
@@ -46,19 +44,22 @@ function App() {
   };
 
   const handleSearchChange = (event) => {
-    const value = event.target.value.toLowerCase();
+    const { value } = event.target;
+
+    const tempShirtData = [...footballShirtData];
+
+    let results = filteredFootballShirtData.filter((tshirt) => {
+      return tshirt.team.toLowerCase().includes(value.toLowerCase());
+    });
+
+    if (value === "") {
+      results = tempShirtData
+    }
 
     setSearchValue(value);
+    setFilteredFootballShirtData(results);
 
-    // console.log(value);
-
-    // let result = [];
-
-    // result = footballShirtData.filter((data) => {
-    //   return data.team.search(value) != 1
-    // });
-
-    // setFilteredFootballShirtData(result);
+    console.log(results);
   };
 
   const removeFromCart = (tshirt) => {
