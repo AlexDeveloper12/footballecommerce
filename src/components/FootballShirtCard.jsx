@@ -13,9 +13,10 @@ function FootballShirtCard({ shirt, addShirt }) {
   const [isValidationMessage, setIsValidationMessage] = useState(false);
   const [quantityChosen, setQuantityChosen] = useState(0);
   const [cardImage,setCardImage] = useState(imageURLFrontCover);
+  const [numAvailability,setNumAvailability] = useState(numberAvailable);
   
 
-  const handleMaxQuantity = (event) => {
+  const handleMaxQuantityOnBlur = (event) => {
     const { value } = event.target;
 
     if (value > numberAvailable) {
@@ -23,16 +24,17 @@ function FootballShirtCard({ shirt, addShirt }) {
     } else {
       setIsValidationMessage(false);
       setQuantityChosen(value);
+      setNumAvailability((prevState)=> prevState -= value);
     }
   };
 
-  const changeToBackCover = () =>{
+  const changeToBackCover = () => {
     setCardImage(imageURLBackCover);
-  }
+  };
 
-  const changeToFrontCover = () =>{
+  const changeToFrontCover = () => {
     setCardImage(imageURLFrontCover);
-  }
+  };
 
   return (
     <Card style={{ marginBottom: '30px' }}>
@@ -52,10 +54,14 @@ function FootballShirtCard({ shirt, addShirt }) {
         <Typography variant="body2" color="text.secondary">
           £{price}
         </Typography>
-        <TextField type="number" onBlur={(event) => handleMaxQuantity(event)} />
+        <TextField
+          type="number"
+          onBlur={(event) => handleMaxQuantityOnBlur(event)}
+          onChange={(event) => handleMaxQuantityOnBlur(event)}
+          />
         <Typography variant="body2" color="text.secondary">
           Number of shirts available:
-           <span style={{marginLeft:'10px'}}>{numberAvailable}</span> 
+           <span style={{marginLeft:'10px'}}>{numAvailability}</span> 
         </Typography>
 
         {
