@@ -35,7 +35,7 @@ function FootballShirtCard({ shirt, addShirt }) {
   }
 
   return (
-    <Card style={{ marginBottom: '30px'}}>
+    <Card style={{ marginBottom: '30px' }}>
       <CardMedia
         component="img"
         sx={{ height: 370 }}

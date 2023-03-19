@@ -23,14 +23,13 @@ const Item = styled(Paper)(({ theme }) => ({
 function App() {
   const [footballShirtData, setFootballShirtData] = useState([]);
   const [filteredFootballShirtData, setFilteredFootballShirtData] = useState([]);
-  const [checkedState, setCheckedState] = useState(
-    new Array(footballShirtData.length).fill(false),
-  );
-
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartData, setCartData] = useState([]);
   const [isAddedAlertOpen, setIsAddedAlertOpen] = useState(false);
   const [isValidationMessage, setValidationMessage] = useState(false);
+  const [validationText, setValidationText] = useState({
+    headerText: '', valueText: '',
+  });
   const [searchValue, setSearchValue] = useState('');
 
   const getTShirtsInCart = () => {
@@ -48,12 +47,11 @@ function App() {
 
     const tempShirtData = [...footballShirtData];
 
-    let results = filteredFootballShirtData.filter((tshirt) => {
-      return tshirt.team.toLowerCase().includes(value.toLowerCase());
-    });
+    // eslint-disable-next-line max-len
+    let results = filteredFootballShirtData.filter((tshirt) => tshirt.team.toLowerCase().includes(value.toLowerCase()));
 
-    if (value === "") {
-      results = tempShirtData
+    if (value === '') {
+      results = tempShirtData;
     }
 
     setSearchValue(value);
@@ -86,8 +84,16 @@ function App() {
       numberAvailable,
     } = item;
 
+    const tshirtItem = localStorage.getItem(`shirtcartitem-${id}`);
+
+    if (tshirtItem) {
+      setValidationMessage(true);
+      setValidationText({ headerText: 'Warning', valueText: 'You have already added this tshirt to your cart' });
+    }
+
     if (quantity === 0) {
       setValidationMessage(true);
+      setValidationText({ headerText: 'Warning', valueText: 'Please enter a valid quantity' });
     } else if (numberAvailable > quantity) {
       const newNumAvailable = numberAvailable - quantity;
 
@@ -129,7 +135,7 @@ function App() {
 
       {
         isValidationMessage ? (
-          <ValidationMessage headerText="Warning" text="Please enter a valid quantity" />
+          <ValidationMessage headerText={validationText.headerText} text={validationText.valueText} />
         )
           : null
       }
