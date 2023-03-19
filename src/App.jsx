@@ -11,6 +11,7 @@ import ValidationMessage from './components/Alerts/ValidationMessage';
 import SearchTeam from './components/SearchTeam';
 import HeaderContainer from './components/Containers/HeaderContainer';
 import SearchContainer from './components/Containers/SearchContainer';
+import Loading from './components/ClipLoader/Loading';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -31,6 +32,7 @@ function App() {
     headerText: '', valueText: '',
   });
   const [searchValue, setSearchValue] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const getTShirtsInCart = () => {
     const tempArray = [];
@@ -72,6 +74,7 @@ function App() {
       .then((response) => {
         setFootballShirtData(response.data);
         setFilteredFootballShirtData(response.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(`Error fetching football shirt data: ${error} `);
@@ -122,6 +125,14 @@ function App() {
       getTShirtsInCart();
     }
   }, []);
+
+  if(isLoading){
+    return(
+      <Loading
+        loading={isLoading}
+        />
+    )
+  }
 
   return (
     <Grid container>
