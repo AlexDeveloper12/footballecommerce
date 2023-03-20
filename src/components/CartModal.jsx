@@ -4,7 +4,6 @@ import '../styles/CartModal.css';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import DeleteIcon from '@mui/icons-material/Delete';
 import CartModalHeader from './CartModalHeader';
 import CartModalTableContainer from './Containers/CartModalTableContainer';
 import CartModalRow from './CartModalRow';
@@ -40,25 +39,33 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                 isOpen={isOpen}
                 style={customStyles}
             >
+                {
+                    cartData.length > 0 ?
+                        <CartModalTableContainer>
+                            <CartModalHeader />
+                            <TableBody>
+                                {
+                                    cartData.map((value) => {
+                                        console.log('inside map')
+                                        console.log(value);
+                                        return (
+                                            <CartModalRow value={value} removeItem={removeItem} />
+                                        )
+                                    }
+                                    )
+                                }
 
-                <CartModalTableContainer>
-                    <CartModalHeader />
-                    <TableBody>
-                        {
-                            cartData.map((value) => (
-                                <CartModalRow value={value} removeItem={removeItem} />
-                            ))
-                        }
+                                <TableRow>
+                                    <TableCell>
+                                        Total:
+                                        {calculateTotal()}
+                                    </TableCell>
+                                </TableRow>
 
-                        <TableRow>
-                            <TableCell>
-                                Total:
-                                {calculateTotal()}
-                            </TableCell>
-                        </TableRow>
+                            </TableBody>
+                        </CartModalTableContainer>
 
-                    </TableBody>
-                </CartModalTableContainer>
+                        : null}
 
                 <CloseButton toggle={toggleModal} />
 

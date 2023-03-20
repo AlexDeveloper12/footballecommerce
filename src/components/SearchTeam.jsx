@@ -7,7 +7,6 @@ function SearchTeam({text, onTextChange}) {
             value={text} 
             onChange={(e)=>onTextChange(e)} 
             placeholder="Search for team" 
-            style={{width:'200px'}}
         />
     )
 }

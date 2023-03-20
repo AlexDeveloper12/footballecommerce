@@ -63,10 +63,11 @@ function App() {
   };
 
   const removeFromCart = (tshirt) => {
-    const tshirtKey = localStorage.key(tshirt);
-
-    localStorage.removeItem(tshirtKey);
-    getTShirtsInCart();
+    const tshirtItem = localStorage.getItem(`shirtcartitem-${tshirt.id}`);
+    if (tshirtItem !== null) {
+      localStorage.removeItem(`shirtcartitem-${tshirt.id}`);
+      getTShirtsInCart();
+    }
   };
 
   useEffect(() => {
@@ -117,11 +118,15 @@ function App() {
   };
 
   const toggleCartModal = () => {
+    if (!isCartOpen) {
+      getTShirtsInCart();
+    }
+    console.log(isCartOpen);
     setIsCartOpen(!isCartOpen);
   };
 
-  const toggleAlert = (alertType) =>{
-    switch(alertType){
+  const toggleAlert = (alertType) => {
+    switch (alertType) {
       case "addcart":
         setIsAddedAlertOpen(!isAddedAlertOpen);
         break;
@@ -137,11 +142,11 @@ function App() {
     }
   }, []);
 
-  if(isLoading){
-    return(
+  if (isLoading) {
+    return (
       <Loading
         loading={isLoading}
-        />
+      />
     )
   }
 

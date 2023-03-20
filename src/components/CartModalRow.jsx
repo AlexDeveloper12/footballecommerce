@@ -3,7 +3,6 @@ import { TableCell, TableRow } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function CartModalRow({value, removeItem}) {
-    console.log(value);
     return (
         <TableRow
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
