@@ -121,17 +121,18 @@ function App() {
     if (!isCartOpen) {
       getTShirtsInCart();
     }
-    console.log(isCartOpen);
     setIsCartOpen(!isCartOpen);
   };
 
   const toggleAlert = (alertType) => {
     switch (alertType) {
-      case "addcart":
+      case 'addcart':
         setIsAddedAlertOpen(!isAddedAlertOpen);
         break;
-      case "validation":
+      case 'validation':
         setValidationMessage(!isValidationMessage);
+        break;
+      default:
         break;
     }
   };

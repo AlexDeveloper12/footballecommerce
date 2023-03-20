@@ -18,7 +18,7 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         height: '60%',
-        width:'50%'
+        width: '50%',
     },
 };
 
@@ -47,10 +47,8 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                             <TableBody>
                                 {
                                     cartData.map((value) => {
-                                        console.log('inside map')
-                                        console.log(value);
                                         return (
-                                            <CartModalRow value={value} removeItem={removeItem} />
+                                            <CartModalRow key={value.id} value={value} removeItem={removeItem} />
                                         )
                                     }
                                     )
