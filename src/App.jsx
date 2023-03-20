@@ -134,7 +134,7 @@ function App() {
         setValidationMessage(!isValidationMessage);
         break;
     }
-  }
+  };
 
   useEffect(() => {
     if (localStorage.length > 0) {
@@ -147,29 +147,11 @@ function App() {
       <Loading
         loading={isLoading}
       />
-    )
+    );
   }
 
   return (
     <Grid container>
-
-      {
-        isAddedAlertOpen ? (
-          <AddToCartAlert toggleAlert={toggleAlert} />
-        )
-          : null
-      }
-
-      {
-        isValidationMessage ? (
-          <ValidationMessage
-            headerText={validationText.headerText}
-            text={validationText.valueText}
-            toggleAlert={toggleAlert}
-          />
-        )
-          : null
-      }
 
       <HeaderContainer toggleCartModal={toggleCartModal} />
 
@@ -179,6 +161,27 @@ function App() {
           onTextChange={handleSearchChange}
         />
       </SearchContainer>
+
+      <Grid container>
+
+        {
+          isAddedAlertOpen ? (
+            <AddToCartAlert toggleAlert={toggleAlert} />
+          )
+            : null
+        }
+
+        {
+          isValidationMessage ? (
+            <ValidationMessage
+              headerText={validationText.headerText}
+              text={validationText.valueText}
+              toggleAlert={toggleAlert}
+            />
+          )
+            : null
+        }
+      </Grid>
 
       {
         filteredFootballShirtData !== null ? filteredFootballShirtData.map((value) => (

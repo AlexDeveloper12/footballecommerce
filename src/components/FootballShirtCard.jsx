@@ -15,20 +15,20 @@ function FootballShirtCard({ shirt, addShirt }) {
   const [cardImage, setCardImage] = useState(imageURLFrontCover);
   const [numAvailability, setNumAvailability] = useState(numberAvailable);
 
-  const handleMaxQuantityOnBlur = (event) => {
+  const handleMaxQuantityOnChange = (event) => {
     const { value } = event.target;
 
-    if (value > numberAvailable) {
+    if (value === '') {
+      setNumAvailability(numberAvailable);
+    }
+
+    if (value > numberAvailable && value !== '') {
       setIsValidationMessage(true);
       setNumAvailability(numberAvailable);
     } else {
       setIsValidationMessage(false);
       setQuantityChosen(value);
       setNumAvailability((prevState) => prevState -= value);
-    }
-
-    if (value === '') {
-      setNumAvailability(numberAvailable);
     }
   };
 
@@ -52,19 +52,18 @@ function FootballShirtCard({ shirt, addShirt }) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" />
-        <Typography variant="body2" color="text.secondary" style={{marginTop:'10px'}}>
+        <Typography variant="body2" color="text.secondary" style={{ marginTop: '10px' }}>
           {description}
         </Typography>
-        <Typography variant="body2" color="text.secondary" style={{marginTop:'10px', marginBottom:'10px'}}>
+        <Typography variant="body2" color="text.secondary" style={{ marginTop: '10px', marginBottom: '10px' }}>
           £
           {price}
         </Typography>
         <TextField
           type="number"
-          onBlur={(event) => handleMaxQuantityOnBlur(event)}
-          onChange={(event) => handleMaxQuantityOnBlur(event)}
+          onChange={(event) => handleMaxQuantityOnChange(event)}
         />
-        <Typography variant="body2" color="text.secondary" style={{marginTop:'10px'}} >
+        <Typography variant="body2" color="text.secondary" style={{ marginTop: '10px' }}>
           Number of shirts available:
           <span style={{ marginLeft: '10px' }}>{numAvailability}</span>
         </Typography>

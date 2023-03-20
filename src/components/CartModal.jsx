@@ -17,7 +17,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        height: '90%',
+        height: '60%',
+        width:'50%'
     },
 };
 
@@ -65,7 +66,7 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                             </TableBody>
                         </CartModalTableContainer>
 
-                        : null}
+                        : <span style={{color:'black'}}>Your bag is empty</span>}
 
                 <CloseButton toggle={toggleModal} />
 
