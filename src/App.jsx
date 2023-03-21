@@ -62,12 +62,19 @@ function App() {
     console.log(results);
   };
 
-  const removeFromCart = (tshirt) => {
-    const tshirtItem = localStorage.getItem(`shirtcartitem-${tshirt.id}`);
-    if (tshirtItem !== null) {
-      localStorage.removeItem(`shirtcartitem-${tshirt.id}`);
-      getTShirtsInCart();
+  const removeFromCart = (tshirt, action) => {
+    switch (action) {
+      case 'remove':
+        const tshirtItem = localStorage.getItem(`shirtcartitem-${tshirt.id}`);
+        if (tshirtItem !== null) {
+          localStorage.removeItem(`shirtcartitem-${tshirt.id}`);
+        }
+        break;
+      default:
+        localStorage.clear();
+        break;
     }
+    getTShirtsInCart();
   };
 
   useEffect(() => {

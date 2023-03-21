@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import '../styles/CartModal.css';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
+import { Button, TableBody, TableCell, TableRow } from '@mui/material';
 import CartModalHeader from './CartModalHeader';
 import CartModalTableContainer from './Containers/CartModalTableContainer';
 import CartModalRow from './CartModalRow';
@@ -55,16 +53,20 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                                 }
 
                                 <TableRow>
-                                    <TableCell>
+                                    <TableCell align="right" colSpan={6}>
                                         Total:
                                         {calculateTotal()}
                                     </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell align="right" colspan={6}>
+                                        <Button variant="contained" color="error" onClick={()=> removeItem()}>Remove all</Button></TableCell>
                                 </TableRow>
 
                             </TableBody>
                         </CartModalTableContainer>
 
-                        : <span style={{color:'black'}}>Your bag is empty</span>}
+                        : <span style={{ color: 'black' }}>Your cart is empty</span>}
 
                 <CloseButton toggle={toggleModal} />
 

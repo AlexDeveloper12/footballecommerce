@@ -18,6 +18,8 @@ function CartModalRow({ value, removeItem }) {
         }
         //if quantity is 0 then run the remove item function
 
+
+
     };
 
     return (
@@ -31,7 +33,7 @@ function CartModalRow({ value, removeItem }) {
             <TableCell component="th" scope="row">{value.description}</TableCell>
             <TableCell component="th" scope="row"> <button onClick={() => handleQuantityUpdate('increase')} >-</button> {updatedQuantity}<button onClick={() => handleQuantityUpdate('decrease')}>+</button></TableCell>
             <TableCell component="th" scope="row">£{value.price}</TableCell>
-            <TableCell component="th" scope="row" align="right" ><DeleteIcon onClick={() => removeItem(value)} /></TableCell>
+            <TableCell component="th" scope="row" align="right" ><DeleteIcon onClick={() => removeItem(value,"remove")} /></TableCell>
         </TableRow>
     )
 
