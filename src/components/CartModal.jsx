@@ -16,7 +16,7 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         height: '60%',
-        width: '50%',
+        width: '65%',
     },
 };
 
@@ -59,7 +59,7 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell align="right" colspan={6}>
+                                    <TableCell align="right" colSpan={6}>
                                         <Button variant="contained" color="error" onClick={()=> removeItem()}>Remove all</Button></TableCell>
                                 </TableRow>
 
