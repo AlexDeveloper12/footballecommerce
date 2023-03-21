@@ -14,21 +14,25 @@ function FootballShirtCard({ shirt, addShirt }) {
   const [quantityChosen, setQuantityChosen] = useState(0);
   const [cardImage, setCardImage] = useState(imageURLFrontCover);
   const [numAvailability, setNumAvailability] = useState(numberAvailable);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
 
   const handleMaxQuantityOnChange = (event) => {
     const { value } = event.target;
 
     if (value === '') {
       setNumAvailability(numberAvailable);
+      setIsBtnDisabled(false);
     }
 
     if (value > numberAvailable && value !== '') {
       setIsValidationMessage(true);
       setNumAvailability(numberAvailable);
+      setIsBtnDisabled(true);
     } else {
       setIsValidationMessage(false);
       setQuantityChosen(value);
       setNumAvailability((prevState) => prevState -= value);
+      setIsBtnDisabled(false);
     }
   };
 
@@ -75,7 +79,7 @@ function FootballShirtCard({ shirt, addShirt }) {
         }
       </CardContent>
       <CardActions>
-        <AddToCartButton shirt={shirt} addShirt={() => addShirt(shirt, quantityChosen)} />
+        <AddToCartButton shirt={shirt} addShirt={() => addShirt(shirt, quantityChosen)} disabledState={isBtnDisabled} />
       </CardActions>
     </Card>
   );
