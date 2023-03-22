@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import '../styles/CartModal.css';
-import { Button, TableBody, TableCell, TableRow } from '@mui/material';
+import {
+  Button, TableBody, TableCell, TableRow,
+} from '@mui/material';
 import CartModalHeader from './CartModalHeader';
 import CartModalTableContainer from './Containers/CartModalTableContainer';
 import CartModalRow from './CartModalRow';
@@ -46,7 +48,11 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                                 {
                                     cartData.map((value) => {
                                         return (
-                                            <CartModalRow key={value.id} value={value} removeItem={removeItem} />
+                                            <CartModalRow 
+                                                key={value.id} 
+                                                value={value} 
+                                                removeItem={removeItem} 
+                                                calculateCartTotal={calculateTotal} />
                                         )
                                     }
                                     )
@@ -60,7 +66,7 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
                                 </TableRow>
                                 <TableRow>
                                     <TableCell align="right" colSpan={6}>
-                                        <Button variant="contained" color="error" onClick={()=> removeItem()}>Remove all</Button></TableCell>
+                                      <Button variant="contained" color="error" onClick={()=> removeItem()}>Remove all</Button></TableCell>
                                 </TableRow>
 
                             </TableBody>
@@ -70,8 +76,8 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
 
                 <CloseButton toggle={toggleModal} />
 
-            </ReactModal>
-        );
+        </ReactModal>
+    );
   }
 }
 

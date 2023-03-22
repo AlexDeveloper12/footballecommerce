@@ -36,6 +36,7 @@ function App() {
 
   const getTShirtsInCart = () => {
     const tempArray = [];
+
     for (let myIndex = 0; myIndex < localStorage.length; myIndex += 1) {
       const key = localStorage.key(myIndex);
       const item = JSON.parse(localStorage.getItem(key));
@@ -90,19 +91,6 @@ function App() {
   }, []);
 
   const addShirtToCart = (item, quantity) => {
-
-    console.log('addShirtToCart');
-    console.log(item.id);
-    
-
-    const shirtIndex = footballShirtData.findIndex((e)=>e.id===item.id);
-    console.log(shirtIndex);
-
-    if(shirtIndex){
-      //t shirts initially aren't in local storage they are just in file
-    }
-
-
     const {
       id, team, description, imageURLFrontCover, imageURLBackCover, price,
       numberAvailable,
@@ -113,12 +101,15 @@ function App() {
     if (tshirtItem) {
       setValidationMessage(true);
       setValidationText({ headerText: 'Warning', valueText: 'You have already added this tshirt to your cart' });
+    } else {
+      setValidationMessage(false);
     }
 
     if (quantity === 0) {
       setValidationMessage(true);
       setValidationText({ headerText: 'Warning', valueText: 'Please enter a valid quantity' });
     } else if (numberAvailable > quantity) {
+      setValidationMessage(true);
       const newNumAvailable = numberAvailable - quantity;
 
       const shirtToAdd = {
