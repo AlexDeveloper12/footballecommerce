@@ -109,7 +109,7 @@ function App() {
       setValidationMessage(true);
       setValidationText({ headerText: 'Warning', valueText: 'Please enter a valid quantity' });
     } else if (numberAvailable > quantity) {
-      setValidationMessage(true);
+      setValidationMessage(false);
       const newNumAvailable = numberAvailable - quantity;
 
       const shirtToAdd = {
