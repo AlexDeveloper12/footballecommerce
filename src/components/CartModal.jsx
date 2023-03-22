@@ -8,31 +8,31 @@ import CartModalRow from './CartModalRow';
 import CloseButton from './Custom/CloseButton';
 
 const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        height: '60%',
-        width: '65%',
-    },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    height: '60%',
+    width: '65%',
+  },
 };
 
 ReactModal.setAppElement('#root');
 
 function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
-    const calculateTotal = () => {
-        const tempCartData = [...cartData];
+  const calculateTotal = () => {
+    const tempCartData = [...cartData];
 
-        // eslint-disable-next-line max-len
-        const reduceCartData = parseFloat(tempCartData.reduce((total, item) => total + (parseFloat(item.price) * parseFloat(item.quantityChosen)), 0)).toFixed(2);
+    // eslint-disable-next-line max-len
+    const reduceCartData = parseFloat(tempCartData.reduce((total, item) => total + (parseFloat(item.price) * parseFloat(item.quantityChosen)), 0)).toFixed(2);
 
-        return `£${reduceCartData}`;
-    };
+    return `£${reduceCartData}`;
+  };
 
-    if (cartData) {
+  if (cartData) {
         return (
             <ReactModal
                 isOpen={isOpen}
@@ -72,7 +72,7 @@ function CartModal({ isOpen, toggleModal, cartData, removeItem }) {
 
             </ReactModal>
         );
-    }
+  }
 }
 
 export default CartModal;

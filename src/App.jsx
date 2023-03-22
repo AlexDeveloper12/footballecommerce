@@ -90,6 +90,19 @@ function App() {
   }, []);
 
   const addShirtToCart = (item, quantity) => {
+
+    console.log('addShirtToCart');
+    console.log(item.id);
+    
+
+    const shirtIndex = footballShirtData.findIndex((e)=>e.id===item.id);
+    console.log(shirtIndex);
+
+    if(shirtIndex){
+      //t shirts initially aren't in local storage they are just in file
+    }
+
+
     const {
       id, team, description, imageURLFrontCover, imageURLBackCover, price,
       numberAvailable,
@@ -108,7 +121,7 @@ function App() {
     } else if (numberAvailable > quantity) {
       const newNumAvailable = numberAvailable - quantity;
 
-      const shirtToAdd = JSON.stringify({
+      const shirtToAdd = {
         id,
         team,
         description,
@@ -117,9 +130,9 @@ function App() {
         price,
         quantityChosen: quantity,
         numberAvailable: newNumAvailable,
-      });
+      };
 
-      localStorage.setItem(`shirtcartitem-${id}`, shirtToAdd);
+      localStorage.setItem(`shirtcartitem-${id}`, JSON.stringify(shirtToAdd));
       setIsAddedAlertOpen(true);
     }
   };
