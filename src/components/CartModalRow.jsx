@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TableCell, TableRow } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function CartModalRow({ value, removeItem, calculateCartTotal }) {
-    const [updatedQuantity, setUpdatedQuantity] = useState(Number(value.quantityChosen));
+    const [updatedQuantity, setUpdatedQuantity] = useState();
+
+    useEffect(()=>{
+        setUpdatedQuantity(Number(value.quantityChosen))
+    },[]);
 
     const handleQuantityUpdate = (action) => {
         switch (action) {
@@ -19,13 +23,12 @@ function CartModalRow({ value, removeItem, calculateCartTotal }) {
 
         calculateCartTotal();
 
-        console.log(value);
 
         value['quantityChosen'] = updatedQuantity;
 
-        console.log(value);
-
         //localStorage.setItem(`shirtcartitem-${value.id}`, JSON.stringify(value));
+
+        console.log(updatedQuantity);
 
         if (updatedQuantity === 0) {
             removeItem(value, 'remove');
